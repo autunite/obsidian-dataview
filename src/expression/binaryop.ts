@@ -113,9 +113,7 @@ export function createBinaryOps(linkNormalizer: (x: string) => string): BinaryOp
             .registerComm("string", "*", "number", (a, b) => (b < 0 ? "" : a.repeat(b)))
             // Date Operations.
             .register("date", "-", "date", (a, b) => {
-                return normalizeDuration(
-                    a.diff(b, ["years", "months", "days", "hours", "minutes", "seconds", "milliseconds"])
-                );
+                return a.diff(b);
             })
             .register("date", "-", "duration", (a, b) => a.minus(b))
             .registerComm("date", "+", "duration", (a, b) => a.plus(b))
